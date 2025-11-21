@@ -4,14 +4,23 @@ class Television:
     MAX_CHANNEL = 3
     MAX_VOLUME = 2
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__muted = False
         self.__volume = Television.MIN_VOLUME
         self.__channel = Television.MIN_CHANNEL
+        self.__status = False
     def power(self):
-        pass
+        if self.__status == False:
+            self.__status = True
+        else:
+            self.__status = False
     def mute(self):
-        pass
+        if self.__status:
+            if self.__muted == False:
+                self.__muted = True
+            else:
+                self.__muted = False
+                
     def channel_up(self):
         if self.__status:
             if self.__channel < Television.MAX_CHANNEL:
@@ -37,8 +46,8 @@ class Television:
             if self.__volume > Television.MIN_VOLUME:
                 self.__volume -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.__muted:
-            return f"Volume = {Television.MIN_VOLUME}"
+            return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {Television.MIN_VOLUME}"
         else:
-            return f"xxx"
+            return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {self.__volume}"
